@@ -1,0 +1,1 @@
+SELECT student_id AS Estudiante, study_hours_per_week AS Horas_estudio, final_grade_pct AS Calificacion_final FROM `bi_student_grade_ses_dataset_20261026223437` WHERE study_hours_per_week IS NOT NULL AND final_grade_pct IS NOT NULL ORDER BY student_id;

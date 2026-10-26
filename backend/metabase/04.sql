@@ -1,0 +1,1 @@
+SELECT CASE WHEN final_grade_pct >= 60 THEN 'Aprobados' ELSE 'Reprobados' END AS Resultado, COUNT(*) AS Estudiantes FROM `bi_student_grade_ses_dataset_20261026223437` WHERE final_grade_pct IS NOT NULL AND has_internet_access IN (0,1) [[AND has_internet_access = {{internet}}]] GROUP BY Resultado ORDER BY Resultado;

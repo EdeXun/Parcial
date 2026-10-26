@@ -1,0 +1,10 @@
+{
+  "name": "parcial2-metabase-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "review:metabase": "node --env-file=.env scripts/review-metabase.js",
+    "setup:metabase": "node --env-file=.env scripts/setup-metabase.js",
+    "export:pdf": "node --env-file=.env scripts/export-pdf.js"
+  }
+}

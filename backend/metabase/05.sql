@@ -1,0 +1,1 @@
+SELECT LEAST(FLOOR(attendance_rate_pct / 10) * 10,90) AS Asistencia_desde, ROUND(AVG(final_grade_pct),2) AS Promedio FROM `bi_student_grade_ses_dataset_20261026223437` WHERE attendance_rate_pct BETWEEN 0 AND 100 AND final_grade_pct IS NOT NULL GROUP BY Asistencia_desde ORDER BY Asistencia_desde;

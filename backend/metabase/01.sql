@@ -1,0 +1,1 @@
+SELECT grade_class AS Calificacion, COUNT(*) AS Estudiantes FROM `bi_student_grade_ses_dataset_20261026223437` WHERE grade_class IS NOT NULL AND grade_class <> '' GROUP BY grade_class ORDER BY grade_class;

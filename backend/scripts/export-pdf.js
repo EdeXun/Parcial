@@ -1,0 +1,11 @@
+import { mkdir, writeFile } from 'node:fs/promises';
+import { site } from './metabase-api.js';
+const id = Number(process.env.METABASE_DASHBOARD_ID);
+if (!Number.isSafeInteger(id) || id < 1 || !process.env.METABASE_API_KEY) throw new Error('Configura el ID del dashboard y la API key en .env.');
+const response = await fetch(`${site}/api/dashboard/${id}/pdf`, { method: 'POST', headers: { 'X-API-Key': process.env.METABASE_API_KEY, 'Content-Type': 'application/json' }, body: JSON.stringify({ paper_size: 'a4', parameters: [] }), signal: AbortSignal.timeout(180000) });
+if (!response.ok) throw new Error(`No se pudo exportar (${response.status}). Usa el menú del dashboard → Exportar como PDF.`);
+const bytes = Buffer.from(await response.arrayBuffer());
+if (!bytes.subarray(0,5).equals(Buffer.from('%PDF-'))) throw new Error('Metabase no devolvió un PDF.');
+await mkdir(new URL('../output/', import.meta.url), { recursive: true });
+await writeFile(new URL('../output/dashboard-parcial2.pdf', import.meta.url), bytes);
+console.log('PDF guardado en output/dashboard-parcial2.pdf');
